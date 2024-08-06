@@ -3,7 +3,8 @@ import { gsap } from "gsap";
 
 const MAXIMUN = 10;
 
-const CounterEffect = () => {
+
+export const useCounter = () => {
 
     const [counter, setCounter] = useState(8)
     const counterRef = useRef<HTMLHeadingElement>(null)
@@ -12,12 +13,6 @@ const CounterEffect = () => {
 
         setCounter(prev => Math.min(prev + 1, MAXIMUN))
 
-        // if (counter < 10) {
-        //     setCounter(counter + 1)
-        // }
-        // else{
-        //     console.log("Counter es Mayor a 10.")
-        // }
     }
 
     useEffect(() => {
@@ -34,13 +29,13 @@ const CounterEffect = () => {
     }, [counter])
 
 
-    return (
-        <div>
-            <h1>Counter Effect: </h1>
-            <h2 ref={counterRef}>{counter}</h2>
-            <button onClick={handleClick}>+1</button>
-        </div>
-    )
+
+  return {
+    counter,
+    handleClick,
+    counterRef
+
+  }
 }
 
-export default CounterEffect
+
