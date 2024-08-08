@@ -1,5 +1,5 @@
-import { CounterAction } from "../action";
-import { CounterState } from "../interface";
+import { CounterAction } from "../actions/action";
+import { CounterState } from "../interfaces/interface";
 
  
  
@@ -23,5 +23,4 @@ import { CounterState } from "../interface";
         default:
             return state;
     }
-
 }
