@@ -4,3 +4,10 @@ export interface CounterState {
     previous: number,
     changes: number
 }
+export interface CounterCalculator {
+    counterSum: number,
+    counterSub: number,
+    counterMult: number,
+    counterDiv: number,
+
+}
