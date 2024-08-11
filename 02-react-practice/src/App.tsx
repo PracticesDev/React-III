@@ -1,8 +1,10 @@
+import Navigation from "./Routes/Navigation";
+import './index.css';
 
 function App() {
   return (
     <>
-      <h1>React + TypeScript</h1>
+      <Navigation/>
     </>
   );
 }
