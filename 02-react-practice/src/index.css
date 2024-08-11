@@ -28,12 +28,14 @@ nav {
   text-align: center;
   width: 250px;
 }
+
 nav ul {
-  align-items: center;
+  padding-left: 0;
   display: flex;
   flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
   justify-content: center;
-  padding-left: 0;
 }
 
 nav li {

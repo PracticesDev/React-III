@@ -1,37 +1,53 @@
+import { Suspense } from "react"
 import { BrowserRouter, Navigate, NavLink, Route, Routes } from "react-router-dom"
 
+
+//Navegacion Principal
+import { routes } from './routes';
 
 
 
 const Navigation = () => {
     return (
         <>
-            <BrowserRouter>
+            <Suspense fallback={ <span>Loading...</span> } >
+                <BrowserRouter>
 
-                <div className="main-layout">
-                    <nav>
-                        <img src='logo192.png' alt="" />
-                        <ul>
-                            <li>
-                                <NavLink to='/home' className={({ isActive }) => isActive ? 'nav-active' : ''}>Home</NavLink>
-                                <NavLink to='/about' className={({ isActive }) => isActive ? 'nav-active' : ''}>About</NavLink>
-                                <NavLink to='/users' className={({ isActive }) => isActive ? 'nav-active' : ''}>Users</NavLink>
-                            </li>
-                        </ul>
-                    </nav>
-                    <Routes>
-                        <Route path="/home" element={<h1>Home Page</h1>}></Route>
-                        <Route path="/users" element={<h1>Users Page</h1>}></Route>
-                        <Route path="/about" element={<h1>About Page</h1>}></Route>
+                    <div className="main-layout">
+                        <nav>
+                            <img src='logo192.png' alt="" />
+                            <ul>
+                                {
+                                    routes.map(route => (
+                                        <li key={route.to}>
+                                            <NavLink
+                                                to={route.path}
+                                                className={({ isActive }) => isActive ? 'nav-active' : ''}>
+                                                {route.name}
+                                            </NavLink>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                        </nav>
+                        <Routes>
+                            {
+                                routes.map(route => (
+                                    <Route
+                                        key={route.to}
+                                        path={route.path}
+                                        element={<route.component />}
+                                    />
+                                ))
+                            }
 
-                        <Route path="/*" element={<Navigate to='/home' replace />}></Route>
+                            <Route path="/*" element={<Navigate to={routes[0].to} replace />}></Route>
+                        </Routes>
 
-                    </Routes>
-
-                </div>
-            </BrowserRouter>
+                    </div>
+                </BrowserRouter>
+            </Suspense>
         </>
     )
 }
-
 export default Navigation
